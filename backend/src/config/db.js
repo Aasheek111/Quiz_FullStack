@@ -1,14 +1,12 @@
 import mongoose from "mongoose";
 
 export const connectDB = async () => {
-const uri = "mongodb+srv://technicalaashik111_db_user:naya@cluster0.5b5ertb.mongodb.net/?appName=Cluster0";
+  console.log("MONGO_URI:", process.env.MONGO_URI);
 
-  await mongoose
-    .connect(uri)
-    .then(() => {
-      console.log("Mongo db connection sucessfull");
-    })
-    .catch((e) => {
-      console.log("Error while connecting to th db", e);
-    });
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected successfully");
+  } catch (e) {
+    console.log("Mongo not connected", e);
+  }
 };
