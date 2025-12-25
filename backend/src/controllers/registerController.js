@@ -1,5 +1,6 @@
-import User from "./models/UserModel";
+import User from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken"
 //this is for register
 //user model ma user password ani email xa
 
@@ -17,7 +18,7 @@ export async function register(req, res) {
 
     if (isUser) {
       return res.status(409).json({
-        sucess: false,
+        success: false,
         message: "User already exists",
       });
     }

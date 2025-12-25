@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
-import User from "../models/UserModel";
-import jwt, { JsonWebTokenError } from "jsonwebtoken";
+import User from "../models/UserModel.js";
+import jwt from "jsonwebtoken";
+
 export async function login(req, res) {
   try {
     const { email, password } = req.body;
@@ -12,17 +13,8 @@ export async function login(req, res) {
       });
     }
 
-    const user = User.findOne({ email });
+    const user =await User.findOne({ email });
 
-    token = jwt.sign(
-      {
-        id: user.id,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
 
     if (!user) {
       return res.status(401).json({
@@ -31,7 +23,7 @@ export async function login(req, res) {
       });
     }
 
-    const isValid = bcrypt.compare(password, user.password);
+    const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
       return res.status(401).json({
@@ -39,6 +31,16 @@ export async function login(req, res) {
         sucess: false,
       });
     }
+
+       const token = jwt.sign(
+      {
+        id: user.id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      }
+    );
 
     return res.status(200).json({
       sucess: true,
