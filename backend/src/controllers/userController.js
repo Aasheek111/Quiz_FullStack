@@ -1,26 +1,45 @@
 import mongoose from "mongoose";
+import User from "./models/UserModel";
+import bcrypt, { hash } from "bcryptjs";
+//this is for register
+//user model ma user password ani email xa
 
-export async function regiseter(req,res){
-    try{
+export async function regiseter(req, res) {
+  try {
+    const { user, email, password } = req.body;
 
-        const {name,email,password}=res.body;
-        
-        if(!name||!email||!password){
-            return res.status(400).json({
-                sucess:false,
-                message:"All fields are Required"
-                
-            })
-            
-        }
+    if (!user || !email || !password) {
+      return res.status(400).json({
+        sucess: false,
+        message: "All fields are Required",
+      });
+    }
+    const isUser = await User.findOne({ email });
+    if (isUser) {
+      return res.status(402).json({
+        sucess: false,
+        message: "User already exists",
+      });
+    }
 
-        if()
+    const hashedPass = bcrypt.hash(password, 10);
 
+    const newUser = await User.create({
+      user,
+      password: hashedPass,
+      email,
+    });
 
-
-        }
-        catch(e){
-            console.log(e);
-
-        }
+    return res.status(200).json({
+      sucess: true,
+      message: "New user registration sucessfull!",
+      user: {
+        id: newUser._id,
+        user: newUser.user,
+        email: newUser.email,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
 }
