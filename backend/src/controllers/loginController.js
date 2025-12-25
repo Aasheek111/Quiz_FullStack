@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/UserModel";
+import jwt, { JsonWebTokenError } from "jsonwebtoken";
 export async function login(req, res) {
   try {
     const { email, password } = req.body;
@@ -12,6 +13,16 @@ export async function login(req, res) {
     }
 
     const user = User.findOne({ email });
+
+    token = jwt.sign(
+      {
+        id: user.id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      }
+    );
 
     if (!user) {
       return res.status(401).json({
@@ -32,6 +43,7 @@ export async function login(req, res) {
     return res.status(200).json({
       sucess: true,
       message: "Login Sucessful",
+      token,
       user: {
         id: user._id,
         email: user.email,
