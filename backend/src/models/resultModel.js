@@ -1,5 +1,5 @@
-import mongoose, { mongo } from "mongoose"
-import User from './UserModel'
+import mongoose, { mongo } from "mongoose";
+
 const performanceEnum = ["Excellent", "Good", "Average", "Needs Work"];
 
 const ResultSchema = new mongoose.Schema(
@@ -18,10 +18,14 @@ const ResultSchema = new mongoose.Schema(
         "java",
         "python",
         "cpp",
-        "bootstrap"
-      ]
+        "bootstrap",
+      ],
     },
-    level: { type: String, required: true, enum: ["basic", "intermediate", "advanced"] },
+    level: {
+      type: String,
+      required: true,
+      enum: ["basic", "intermediate", "advanced"],
+    },
     totalQuestions: { type: Number, required: true, min: 0 },
     correct: { type: Number, required: true, min: 0, default: 0 },
     wrong: { type: Number, required: true, min: 0, default: 0 },
@@ -30,8 +34,22 @@ const ResultSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-ResultSchema.pre('save',function (next){
-    
-})
-const Result= new mongoose.model("Result",ResultSchema);
+ResultSchema.pre("save", function (next) {
+
+  if(this.score>90){
+    this.performance="Excellent";
+  }
+else if(this.score>80){
+  this.performance="Good"
+}
+else if(this.score>70){
+  this.performance="Average"
+}
+else {
+  this.performance="Needs Work"
+}
+
+next();
+});
+const Result = new mongoose.model("Result", ResultSchema);
 export default Result;
