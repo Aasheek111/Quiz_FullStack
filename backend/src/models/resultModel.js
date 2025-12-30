@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const performanceEnum = ["Excellent", "Good", "Average", "Needs Work"];
 
@@ -34,22 +34,24 @@ const ResultSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-ResultSchema.pre("save", function (next) {
+
+ResultSchema.pre("save", function() {
+  this.score=Math.round((this.correct)/(this.totalQuestions)*100)
 
   if(this.score>90){
     this.performance="Excellent";
   }
-else if(this.score>80){
+else if(this.score>60){
   this.performance="Good"
 }
-else if(this.score>70){
+else if(this.score>40){
   this.performance="Average"
 }
 else {
   this.performance="Needs Work"
 }
 
-next();
+
 });
 const Result = new mongoose.model("Result", ResultSchema);
 export default Result;
