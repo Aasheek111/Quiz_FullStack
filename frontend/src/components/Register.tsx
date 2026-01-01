@@ -39,11 +39,11 @@ function Register() {
           </div>
 
           <div className="text-lg flex items-center flex-col">
-            <p className="p-3 text-center">
+            <div className="p-3 text-center">
               <hr />
               or signup with
               <hr />
-            </p>
+            </div>
 
             <div className="flex gap-5 text-3xl m-1">
               <FaGoogle />

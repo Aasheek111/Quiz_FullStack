@@ -11,8 +11,8 @@ function Login() {
           <div>
             <input
               type="text"
-              name=""
-              id=""
+
+
               placeholder="Email"
               className="bg-amber-50 rounded-xl text-lg w-90 text-black p-3 outline-none"
             />
@@ -20,8 +20,8 @@ function Login() {
           <div>
             <input
               type="password"
-              name=""
-              id=""
+
+
               placeholder="Password"
               className="bg-amber-50 text-lg rounded-xl w-90 text-black p-3 outline-none"
             />
@@ -38,11 +38,11 @@ function Login() {
           </div>
 
           <div className=" text-lg flex items-center flex-col">
-            <p className="p-3 ">
+            <div className="p-3 ">
               <hr className="items-center grow flex-1 " />
               or signin with
               <hr />
-            </p>
+            </div>
 
             <div className=" flex gap-5 text-3xl m-1">
               <FaGoogle />
