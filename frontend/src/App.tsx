@@ -1,13 +1,12 @@
-import React from 'react'
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
     <div>
-
-      <h1>Quiz app</h1>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
