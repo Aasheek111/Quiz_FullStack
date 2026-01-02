@@ -1,10 +1,19 @@
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { loginUser } from "../services/authService";
+import { useState } from "react";
 
 function Login() {
 
+  const [email,setEmail]=useState<string>("");
+  const [password,setPass]=useState<string>("");
+
+
   const handelLogin=async()=>{
+
+    const res=await loginUser({email,password});
+    console.log(res);
     
 
   }
@@ -16,8 +25,7 @@ function Login() {
           <div>
             <input
               type="text"
-
-
+              onChange={(e)=>setEmail(e.target.value)}
               placeholder="Email"
               className="bg-amber-50 rounded-xl text-lg w-90 text-black p-3 outline-none"
             />
@@ -25,8 +33,7 @@ function Login() {
           <div>
             <input
               type="password"
-
-
+              onChange={(e)=>setPass(e.target.value)}
               placeholder="Password"
               className="bg-amber-50 text-lg rounded-xl w-90 text-black p-3 outline-none"
             />

@@ -1,7 +1,18 @@
+import { useState } from "react";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { registerUser } from "../services/authService";
 
 function Register() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPass] = useState<string>("");
+  const [name, setName] = useState<string>("");
+
+  const handelSubmit = async () => {
+    const res = await registerUser({ email, password, name });
+    console.log(res);
+  };
+
   return (
     <div className="p-5 w-full flex justify-center items-center text-white">
       <div className="bg-blue-900 flex items-center rounded-2xl flex-col p-6 px-20 shadow-md">
@@ -10,6 +21,7 @@ function Register() {
         <div className="flex flex-col gap-5 text-2xl">
           <input
             type="text"
+            onChange={(e) => setName(e.target.value)}
             placeholder="Full Name"
             className="bg-amber-50 rounded-xl text-lg w-80 text-black p-3 outline-none"
           />
@@ -17,11 +29,13 @@ function Register() {
           <input
             type="email"
             placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
             className="bg-amber-50 rounded-xl text-lg w-80 text-black p-3 outline-none"
           />
 
           <input
             type="password"
+            onChange={(e) => setPass(e.target.value)}
             placeholder="Password"
             className="bg-amber-50 rounded-xl text-lg w-80 text-black p-3 outline-none"
           />
@@ -33,7 +47,10 @@ function Register() {
           />
 
           <div className="flex justify-center">
-            <button className="bg-blue-600 w-full p-3 my-4 rounded-2xl">
+            <button
+              className="bg-blue-600 w-full p-3 my-4 rounded-2xl"
+              onClick={() => handelSubmit()}
+            >
               Register
             </button>
           </div>
@@ -51,7 +68,6 @@ function Register() {
             </div>
           </div>
 
-          {/* Login redirect */}
           <div className="text-xl text-blue-200 flex justify-center cursor-pointer">
             <Link to="/login">Already have an account?</Link>
           </div>

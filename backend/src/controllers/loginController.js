@@ -11,10 +11,11 @@ export async function login(req, res) {
         message: "Field cannot be empty",
         sucess: false,
       });
+
+      
     }
 
-    const user =await User.findOne({ email });
-
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).json({
@@ -32,7 +33,7 @@ export async function login(req, res) {
       });
     }
 
-       const token = jwt.sign(
+    const token = jwt.sign(
       {
         id: user.id,
       },
