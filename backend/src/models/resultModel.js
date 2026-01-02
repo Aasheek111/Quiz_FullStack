@@ -13,12 +13,8 @@ const ResultSchema = new mongoose.Schema(
         "css",
         "js",
         "react",
-          "node",
+         "node",
         "mongodb",
-        "java",
-        "python",
-        "cpp",
-        "bootstrap",
       ],
     },
     level: {

@@ -12,13 +12,13 @@ function Result() {
     performance: string;
   }
 
-  interface Apires {
+  interface Api_res {
     data: Result[];
   }
   const [data, setData] = useState<Result[]>([]);
 
   const getData = async () => {
-    const res = await axios.get<Apires>(
+    const res = await axios.get<Api_res>(
       "http://localhost:3001/result/displayall"
     );
     setData(res.data.data);
@@ -26,9 +26,7 @@ function Result() {
 
   return (
     <div>
-      <h1>Quiz App</h1>
-
-      <button onClick={getData}>Click</button>
+      <h1>Results:</h1>
 
       {data.map((val, ind) => (
         <div key={ind}>

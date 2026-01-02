@@ -1,61 +1,83 @@
 import React, { useState } from "react";
-import { quizQuestions } from "../Questions";
 
 function Home() {
-  const [correct, setCorrect] = useState<number>(0);
-  const [present, setPresent] = useState<number>(0);
-  const [showres, setShowres] = useState(false);
+  const [technology, setTechnology] = useState("");
+  const [level, setLevel] = useState("");
 
-  const current = quizQuestions[present];
+  const techs = ["HTML", "CSS", "JavaScript", "React", "Node.js"];
+  const levels = ["Beginner", "Intermediate", "Pro"];
 
-  const handelClick = (ind: number) => {
-    if (current.options[ind] == current.correctAnswer) {
-      setCorrect(correct + 1);
-    }
-
-    if (present + 1 == quizQuestions.length) {
-      setShowres(true);
-    } else {
-      setPresent(present + 1);
-    }
-  };
   return (
-    <>
-      {showres ? (
-       
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 text-white px-4">
+      <div className="w-full max-w-md bg-slate-900/80 backdrop-blur rounded-2xl p-8 shadow-2xl space-y-8">
 
-
-       <div className=" w-full h-[90vh] text-3xl flex justify-center items-center">
-        <div className="h-100 w-100 bg-blue-900 p-20 text-white">
-        <h1>
-          You Scored {correct}
+        {/* Title */}
+        <h1 className="text-3xl font-bold text-center">
+          Choose Your Path 🚀
         </h1>
-        </div>
 
-       </div>
-      ) : (
-        <div className="w-full h-[90vh] flex justify-center  flex-col">
-          <div className="p-20 ">
-            <div>
-              <h1 className="text-center text-3xl">{current.question}</h1>
-
-              <div className="grid-cols-2 grid gap-4 text-2xl text-white m-8">
-                {current.options.map((val, ind) => (
-                  <button
-                    className="bg-neutral-800 p-4 rounded-2xl cursor-pointer hover:bg-neutral-600"
-                    key={ind}
-                    onClick={() => handelClick(ind)}
-                  >
-                    {val}
-                  </button>
-                ))}
-              </div>
-            </div>
+        {/* Technology */}
+        <div>
+          <h2 className="text-xl font-semibold mb-3">Technology</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {techs.map((tech) => (
+              <button
+                key={tech}
+                onClick={() => setTechnology(tech)}
+                className={`py-2 rounded-lg border transition
+                  ${
+                    technology === tech
+                      ? "bg-blue-600 border-blue-500"
+                      : "border-slate-600 hover:bg-slate-700"
+                  }`}
+              >
+                {tech}
+              </button>
+            ))}
           </div>
-          )
         </div>
-      )}
-    </>
+
+        {/* Level */}
+        <div>
+          <h2 className="text-xl font-semibold mb-3">Level</h2>
+          <div className="grid grid-cols-3 gap-3">
+            {levels.map((lvl) => (
+              <button
+                key={lvl}
+                onClick={() => setLevel(lvl)}
+                className={`py-2 rounded-lg border transition
+                  ${
+                    level === lvl
+                      ? "bg-green-600 border-green-500"
+                      : "border-slate-600 hover:bg-slate-700"
+                  }`}
+              >
+                {lvl}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Start Button */}
+        <button
+          disabled={!technology || !level}
+          className="w-full py-3 rounded-xl font-semibold text-lg
+          bg-gradient-to-r from-blue-500 to-green-500
+          disabled:opacity-40 disabled:cursor-not-allowed
+          hover:scale-[1.02] transition"
+        >
+          Start Learning
+        </button>
+
+        {/* Selected Info */}
+        {technology && level && (
+          <p className="text-center text-sm text-slate-300">
+            You selected <span className="font-semibold">{technology}</span> —{" "}
+            <span className="font-semibold">{level}</span>
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
 
