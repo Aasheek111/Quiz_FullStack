@@ -42,7 +42,7 @@ function Home() {
               <div className="grid-cols-2 grid gap-4 text-2xl text-white m-8">
                 {current.options.map((val, ind) => (
                   <button
-                    className="bg-neutral-800 p-4 rounded-2xl cursor-pointer"
+                    className="bg-neutral-800 p-4 rounded-2xl cursor-pointer hover:bg-neutral-600"
                     key={ind}
                     onClick={() => handelClick(ind)}
                   >

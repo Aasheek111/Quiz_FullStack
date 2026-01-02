@@ -3,6 +3,11 @@ import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Login() {
+
+  const handelLogin=async()=>{
+    
+
+  }
   return (
     <div className="p-3 w-full flex justify-center items-center text-white  ">
       <div className=" bg-blue-900 flex items-center rounded-2xl flex-col p-10 shadow-md ">
@@ -32,7 +37,7 @@ function Login() {
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-blue-600 w-full p-3 my-4 rounded-2xl">
+            <button className="bg-blue-600 w-full p-3 my-4 rounded-2xl" onClick={()=>handelLogin()}>
               Login
             </button>
           </div>
