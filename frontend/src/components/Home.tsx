@@ -1,81 +1,47 @@
 import React, { useState } from "react";
 
 function Home() {
-  const [technology, setTechnology] = useState("");
-  const [level, setLevel] = useState("");
+  const [level, setLevel] = useState<string>("");
+  const [tech, setTech] = useState<string>("");
 
-  const techs = ["HTML", "CSS", "JavaScript", "React", "Node.js"];
-  const levels = ["Beginner", "Intermediate", "Pro"];
+  const tec = ["HTML", "JS", "CSS", "REACT", "NEXT"];
+  const levels = ["Begineer", "Intermediate", "Pro"];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 text-white px-4">
-      <div className="w-full max-w-md bg-slate-900/80 backdrop-blur rounded-2xl p-8 shadow-2xl space-y-8">
+    <div className="min-h-screen w-full bg-slate-700 flex justify-center items-center text-white">
+      <div className="min-w-md  bg-slate-900  p-10 rounded-2xl text-2xl">
+        <h1 className="text-center bold text-3xl p-4">QUIZ</h1>
 
-        {/* Title */}
-        <h1 className="text-3xl font-bold text-center">
-          Choose Your Path 🚀
-        </h1>
-
-        {/* Technology */}
-        <div>
-          <h2 className="text-xl font-semibold mb-3">Technology</h2>
+        <div className="">
+          <h1 className="w-full p-3">Technology</h1>
           <div className="grid grid-cols-2 gap-3">
-            {techs.map((tech) => (
-              <button
-                key={tech}
-                onClick={() => setTechnology(tech)}
-                className={`py-2 rounded-lg border transition
-                  ${
-                    technology === tech
-                      ? "bg-blue-600 border-blue-500"
-                      : "border-slate-600 hover:bg-slate-700"
-                  }`}
-              >
-                {tech}
+            {tec.map((val, i) => (
+              <button className="bg-slate-500 rounded-lg p-3" key={i}>
+                {val}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Level */}
         <div>
-          <h2 className="text-xl font-semibold mb-3">Level</h2>
+          <h1 className="p-3">Levels</h1>
           <div className="grid grid-cols-3 gap-3">
-            {levels.map((lvl) => (
-              <button
-                key={lvl}
-                onClick={() => setLevel(lvl)}
-                className={`py-2 rounded-lg border transition
-                  ${
-                    level === lvl
-                      ? "bg-green-600 border-green-500"
-                      : "border-slate-600 hover:bg-slate-700"
-                  }`}
-              >
-                {lvl}
+            {levels.map((val, i) => (
+              <button className="bg-slate-500 rounded-lg p-3" key={i}>
+                {val}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Start Button */}
-        <button
-          disabled={!technology || !level}
-          className="w-full py-3 rounded-xl font-semibold text-lg
-          bg-gradient-to-r from-blue-500 to-green-500
-          disabled:opacity-40 disabled:cursor-not-allowed
-          hover:scale-[1.02] transition"
-        >
-          Start Learning
-        </button>
-
-        {/* Selected Info */}
-        {technology && level && (
-          <p className="text-center text-sm text-slate-300">
-            You selected <span className="font-semibold">{technology}</span> —{" "}
-            <span className="font-semibold">{level}</span>
-          </p>
-        )}
+        <div className="flex justify-center items-center">
+          <button className="p-3 bg-slate-400 mt-7 min-w-50 rounded-2xl">
+            Submit
+          </button>
+          <div>
+            {}
+          </div>
+        </div>
       </div>
     </div>
   );
