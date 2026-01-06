@@ -5,18 +5,22 @@ function Home() {
   const [tech, setTech] = useState<string>("");
 
   const tec = ["HTML", "JS", "CSS", "REACT", "NEXT"];
-  const levels = ["Begineer", "Intermediate", "Pro"];
+  const levels = ["Beginner", "Intermediate", "Pro"];
 
   return (
     <div className="min-h-screen w-full bg-slate-700 flex justify-center items-center text-white">
-      <div className="min-w-md  bg-slate-900  p-10 rounded-2xl text-2xl">
+      <div className="min-w-2xl  bg-slate-900  p-10 rounded-2xl text-2xl">
         <h1 className="text-center bold text-3xl p-4">QUIZ</h1>
 
         <div className="">
           <h1 className="w-full p-3">Technology</h1>
           <div className="grid grid-cols-2 gap-3">
             {tec.map((val, i) => (
-              <button className="bg-slate-500 rounded-lg p-3" key={i}>
+              <button
+                className={` rounded-lg p-3 ${tech==val?"bg-green-600":"bg-slate-500  hover:bg-slate-400 "} hover:scale-105 transition-all `}
+                key={i}
+                onClick={() => setTech(val)}
+              >
                 {val}
               </button>
             ))}
@@ -27,19 +31,28 @@ function Home() {
           <h1 className="p-3">Levels</h1>
           <div className="grid grid-cols-3 gap-3">
             {levels.map((val, i) => (
-              <button className="bg-slate-500 rounded-lg p-3" key={i}>
+              <button
+                className={`rounded-lg transition-all p-3 hover:scale-105 ${level==val?"bg-red-600":"bg-slate-500  hover:bg-slate-400 "}`}
+                key={i}
+                onClick={() => setLevel(val)}
+              >
                 {val}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="flex justify-center items-center">
-          <button className="p-3 bg-slate-400 mt-7 min-w-50 rounded-2xl">
-            Submit
+        <div className="flex justify-center items-center flex-col">
+          <button
+            disabled={!level || !tech}
+            className="p-3  mt-7 min-w-50 rounded-2xl bg-orange-500 transition-all hover:scale-105 hover:bg-orange-500 m-4 disabled:bg-orange-300"
+            onClick={()=>console.log("looooo")}
+          >
+            Start
           </button>
-          <div>
-            {}
+          <div className="text-lg">
+            -- You selected {" "}
+            <span className="font-extrabold text-green-600">{tech}</span>{" "}Technology and <span className="font-extrabold text-red-600">{level}</span>{" "} level
           </div>
         </div>
       </div>

@@ -18,8 +18,8 @@ function Login() {
 
   }
   return (
-    <div className="p-3 w-full flex justify-center items-center text-white  ">
-      <div className=" bg-blue-900 flex items-center rounded-2xl flex-col p-10 shadow-md ">
+    <div className="p-3 w-full flex justify-center items-center text-white bg-slate-600 h-screen ">
+      <div className=" bg-slate-900 flex items-center rounded-2xl flex-col p-10 shadow-md ">
         <h1 className="text-3xl  h-10 mb-10">Login</h1>
         <div className="flex flex-col gap-5 text-2xl ">
           <div>
