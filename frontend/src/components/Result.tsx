@@ -43,9 +43,14 @@ function Result() {
         <h1>Results:</h1>
 
         {data.map((val, ind) => (
-          <div key={ind} className="flex">
-            <h1>{val.technology}{" = "}</h1>
-            <h1>{val.score}</h1>
+          <div key={ind} className="flex flex-col">
+            <h1><span>Technology :</span> {val.technology}</h1>
+            <h1><span>Score :</span> {val.score}</h1>
+            <h1><span>Perfomance :</span> {val.performance}</h1>
+            <h1><span>TotalQuestions :</span> {val.totalQuestions}</h1>
+            <h1><span>Correct :</span> {val.correct}</h1>
+            <h1><span>Wrong :</span> {val.wrong}</h1>
+
           </div>
         ))}
       </div>
