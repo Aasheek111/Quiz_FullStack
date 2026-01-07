@@ -9,6 +9,7 @@ function Questions({ data }) {
   const [present, setPresent] = useState<number>(0);
   const [showres, setShowres] = useState(false);
 
+const token=localStorage.getItem("token");
   const current = quizQuestions[present];
 
   const sendRes = async () => {
@@ -16,6 +17,7 @@ function Questions({ data }) {
       const response = await api.post(
         "http://localhost:3001/results/create",
         {
+          user:'currentuser',
           level: level,
           technology: tech,
           totalQuestions: 20,
@@ -25,7 +27,7 @@ function Questions({ data }) {
         {
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` // if JWT is used
+            Authorization: `Bearer ${token}`
           },
         }
       );

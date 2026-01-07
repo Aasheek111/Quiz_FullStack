@@ -10,6 +10,13 @@ function Login() {
 
   const handelLogin = async () => {
     const res = await loginUser({ email, password });
+
+       const token = res.data.token;
+
+    console.log("Token received:", token);
+
+    // Save token for later use
+    localStorage.setItem("token", token);
     console.log(res);
   };
   return (

@@ -18,7 +18,7 @@ export async function createResult(req, res) {
 
 export const displayResults = async (req, res) => {
   try {
-    const resultItems = await Result.find().sort({ createdAt: -1 });
+    const resultItems = await Result.find({user:req.user.id}).sort({ createdAt: -1 });
     res.json({
       success: true,
       data: resultItems,

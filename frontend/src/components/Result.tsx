@@ -16,7 +16,7 @@ function Result() {
     data: Result[];
   }
   const [data, setData] = useState<Result[]>([]);
-  
+
   // const getData = async () => {
   //   const res = await axios.get<Api_res>(
   //     "http://localhost:3001/result/displayall"
@@ -24,11 +24,18 @@ function Result() {
   //   setData(res.data.data);
   // };
 
+  const token=localStorage.getItem("token");
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get<Api_res>(
-          "http://localhost:3001/result/displayall"
+          "http://localhost:3001/results/displayall"
+          ,{
+            headers:{
+               Authorization:`Bearer ${token}`
+            }
+          }
         );
         setData(res.data.data);
       } catch (err) {

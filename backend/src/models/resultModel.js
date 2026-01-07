@@ -4,27 +4,16 @@ const performanceEnum = ["Excellent", "Good", "Average", "Needs Work"];
 
 const ResultSchema = new mongoose.Schema(
   {
-
-user:{
-
-  type:mongoose.Schema.Types.ObjectId,
-  ref:"User",
-  required:true
-
-}
-,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     technology: {
       type: String,
       required: true,
       trim: true,
-      enum: [
-        "html",
-        "css",
-        "js",
-        "react",
-         "node",
-        "mongodb",
-      ],
+      enum: ["html", "css", "js", "react", "node", "mongodb"],
     },
     level: {
       type: String,
@@ -40,23 +29,18 @@ user:{
   { timestamps: true }
 );
 
-ResultSchema.pre("save", function() {
-  this.score=Math.round((this.correct)/(this.totalQuestions)*100)
+ResultSchema.pre("save", function () {
+  this.score = Math.round((this.correct / this.totalQuestions) * 100);
 
-  if(this.score>90){
-    this.performance="Excellent";
+  if (this.score > 90) {
+    this.performance = "Excellent";
+  } else if (this.score > 60) {
+    this.performance = "Good";
+  } else if (this.score > 40) {
+    this.performance = "Average";
+  } else {
+    this.performance = "Needs Work";
   }
-else if(this.score>60){
-  this.performance="Good"
-}
-else if(this.score>40){
-  this.performance="Average"
-}
-else {
-  this.performance="Needs Work"
-}
-
-
 });
 const Result = new mongoose.model("Result", ResultSchema);
 export default Result;

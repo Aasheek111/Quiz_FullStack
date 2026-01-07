@@ -15,11 +15,12 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
+
 );
 app.use(express.json());
 
 app.use("/api/auth", userRouter);
-app.use("/result", resultRoute);
+app.use("/results", resultRoute);
 
 app.listen(port, () => {
   console.log(`App running in http://localhost:${port}`);
