@@ -43,14 +43,33 @@ function Result() {
         <h1>Results:</h1>
 
         {data.map((val, ind) => (
-          <div key={ind} className="flex flex-col">
-            <h1><span>Technology :</span> {val.technology}</h1>
-            <h1><span>Score :</span> {val.score}</h1>
-            <h1><span>Perfomance :</span> {val.performance}</h1>
-            <h1><span>TotalQuestions :</span> {val.totalQuestions}</h1>
-            <h1><span>Correct :</span> {val.correct}</h1>
-            <h1><span>Wrong :</span> {val.wrong}</h1>
-
+          <div key={ind} className=" grid grid-cols-3 gap-2">
+            <h1 className="p-4 bg-slate-700 rounded-2xl">
+              <span className="font-bold text-cyan-400">Technology :</span>{" "}
+              {val.technology}
+            </h1>
+            <h1 className="p-4 bg-slate-700 rounded-2xl">
+              <span className="text-purple-500 font-bold">Score :</span>{" "}
+              {val.score}
+            </h1>
+            <h1 className="p-4 bg-slate-700 rounded-2xl">
+              <span className="text-orange-500 font-bold">Perfomance :</span>{" "}
+              {val.performance}
+            </h1>
+            <h1 className="p-4 bg-slate-700 rounded-2xl">
+              <span className="font-bold text-yellow-500">
+                TotalQuestions :
+              </span>{" "}
+              {val.totalQuestions}
+            </h1>
+            <h1 className="p-4 bg-slate-700 rounded-2xl">
+              <span className="font-bold text-green-500">Correct :</span>{" "}
+              {val.correct}
+            </h1>
+            <h1 className="p-4 bg-slate-700 rounded-2xl">
+              <span className="font-bold text-red-500">Wrong :</span>{" "}
+              {val.wrong}
+            </h1>
           </div>
         ))}
       </div>
