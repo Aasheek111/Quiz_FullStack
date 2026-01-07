@@ -1,12 +1,44 @@
 import React, { useState } from "react";
 import { quizQuestions } from "../Questions";
+import Result from "./Result";
+import api from "../lib/axios";
 
-function Questions() {
+function Questions({ data }) {
+  const { level, tech } = data;
   const [correct, setCorrect] = useState<number>(0);
   const [present, setPresent] = useState<number>(0);
   const [showres, setShowres] = useState(false);
 
   const current = quizQuestions[present];
+
+  const sendRes = async () => {
+    try {
+      const response = await api.post(
+        "http://localhost:3001/results/create",
+        {
+          level: level,
+          technology: tech,
+          totalQuestions: 20,
+          correct: correct,
+          wrong: 20 - correct,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}` // if JWT is used
+          },
+        }
+      );
+
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  if (showres) {
+    sendRes();
+  }
 
   const handelClick = (ind: number) => {
     if (current.options[ind] == current.correctAnswer) {
@@ -22,11 +54,7 @@ function Questions() {
   return (
     <>
       {showres ? (
-        <div className=" w-full h-[90vh] text-3xl flex justify-center items-center">
-          <div className="h-100 w-100 bg-blue-900 p-20 text-white">
-            <h1>You Scored {correct}</h1>
-          </div>
-        </div>
+        <Result />
       ) : (
         <div className="w-full h-[90vh] flex justify-center  flex-col">
           <div className="p-20 ">

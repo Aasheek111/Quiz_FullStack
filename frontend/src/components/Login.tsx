@@ -5,18 +5,13 @@ import { loginUser } from "../services/authService";
 import { useState } from "react";
 
 function Login() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPass] = useState<string>("");
 
-  const [email,setEmail]=useState<string>("");
-  const [password,setPass]=useState<string>("");
-
-
-  const handelLogin=async()=>{
-
-    const res=await loginUser({email,password});
+  const handelLogin = async () => {
+    const res = await loginUser({ email, password });
     console.log(res);
-    
-
-  }
+  };
   return (
     <div className="p-3 w-full flex justify-center items-center text-white bg-slate-600 h-screen ">
       <div className=" bg-slate-900 flex items-center rounded-2xl flex-col p-10 shadow-md ">
@@ -25,7 +20,7 @@ function Login() {
           <div>
             <input
               type="text"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               className="bg-amber-50 rounded-xl text-lg w-90 text-black p-3 outline-none"
             />
@@ -33,7 +28,7 @@ function Login() {
           <div>
             <input
               type="password"
-              onChange={(e)=>setPass(e.target.value)}
+              onChange={(e) => setPass(e.target.value)}
               placeholder="Password"
               className="bg-amber-50 text-lg rounded-xl w-90 text-black p-3 outline-none"
             />
@@ -44,7 +39,10 @@ function Login() {
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-blue-600 w-full p-3 my-4 rounded-2xl" onClick={()=>handelLogin()}>
+            <button
+              className="bg-blue-600 w-full p-3 my-4 rounded-2xl"
+              onClick={() => handelLogin()}
+            >
               Login
             </button>
           </div>

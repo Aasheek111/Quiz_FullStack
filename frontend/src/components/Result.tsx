@@ -16,12 +16,14 @@ function Result() {
     data: Result[];
   }
   const [data, setData] = useState<Result[]>([]);
+  
   // const getData = async () => {
   //   const res = await axios.get<Api_res>(
   //     "http://localhost:3001/result/displayall"
   //   );
   //   setData(res.data.data);
   // };
+
   useEffect(() => {
     const fetchData = async () => {
       try {

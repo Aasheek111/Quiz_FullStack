@@ -1,13 +1,26 @@
+import axios from "axios";
 import React, { useState } from "react";
+import Questions from "./Questions";
 
 function Home() {
   const [level, setLevel] = useState<string>("");
   const [tech, setTech] = useState<string>("");
+  const [selected,setSelected]=useState(false);
+
+  const submitVal=()=>{
+    setSelected(true);
+  }
 
   const tec = ["HTML", "JS", "CSS", "REACT", "NEXT"];
   const levels = ["Beginner", "Intermediate", "Pro"];
 
   return (
+
+     selected?<div>
+      <Questions data={{level:level,tech}}/>
+      </div>
+      :
+
     <div className="min-h-screen w-full bg-slate-700 flex justify-center items-center text-white">
       <div className="min-w-2xl  bg-slate-900  p-10 rounded-2xl text-2xl">
         <h1 className="text-center bold text-3xl p-4">QUIZ</h1>
@@ -46,7 +59,7 @@ function Home() {
           <button
             disabled={!level || !tech}
             className="p-3  mt-7 min-w-50 rounded-2xl bg-orange-500 transition-all hover:scale-105 hover:bg-orange-500 m-4 disabled:bg-orange-300"
-            onClick={()=>console.log("looooo")}
+            onClick={()=>submitVal()}
           >
             Start
           </button>
@@ -57,7 +70,10 @@ function Home() {
         </div>
       </div>
     </div>
+  
   );
+
+
 }
 
 export default Home;

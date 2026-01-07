@@ -4,6 +4,15 @@ const performanceEnum = ["Excellent", "Good", "Average", "Needs Work"];
 
 const ResultSchema = new mongoose.Schema(
   {
+
+user:{
+
+  type:mongoose.Schema.Types.ObjectId,
+  ref:"User",
+  required:true
+
+}
+,
     technology: {
       type: String,
       required: true,
@@ -20,7 +29,7 @@ const ResultSchema = new mongoose.Schema(
     level: {
       type: String,
       required: true,
-      enum: ["basic", "intermediate", "advanced"],
+      enum: ["Begineer", "Intermediate", "Pro"],
     },
     totalQuestions: { type: Number, required: true, min: 0 },
     correct: { type: Number, required: true, min: 0, default: 0 },
