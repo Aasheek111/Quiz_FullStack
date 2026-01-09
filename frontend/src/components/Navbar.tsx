@@ -1,15 +1,18 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import Home from './Home'
 import Result from "./Result";
 import Login from "./Login";
 import Register from "./Register";
 
 const Navbar: React.FC = () => {
+
+  const navigate=useNavigate();
+
   return (
 
     <>
     <nav className="flex items-center justify-between px-8 py-4 bg-slate-800 text-white">
-      <h1 className="text-xl font-bold">QuizApp</h1>
+      <h1 className="text-xl font-bold cursor-pointer" onClick={()=>navigate('/')}>QuizApp</h1>
       <div className="flex gap-5 text-xl">
         <Link to="/">Home</Link>
         <Link to="/results">Results</Link>
