@@ -5,7 +5,6 @@ import { connectDB } from "./config/db.js";
 import resultRoute from "./routes/resultsRoute.js";
 
 import userRouter from "./routes/auth.js";
-
 const app = express();
 const port = 3001;
 app.use(

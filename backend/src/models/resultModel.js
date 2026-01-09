@@ -7,13 +7,12 @@ const ResultSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     technology: {
       type: String,
       required: true,
       trim: true,
-      enum: ["html", "css", "js", "react", "node", "mongodb"],
+      enum: ["HTML", "CSS", "JS", "REACT", "NODE", "MONGODB"],
     },
     level: {
       type: String,

@@ -24,17 +24,17 @@ function Result() {
   //   setData(res.data.data);
   // };
 
-  const token=localStorage.getItem("token");
-  
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get<Api_res>(
-          "http://localhost:3001/results/displayall"
-          ,{
-            headers:{
-               Authorization:`Bearer ${token}`
-            }
+          "http://localhost:3001/results/displayall",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
         setData(res.data.data);
@@ -47,38 +47,46 @@ function Result() {
   }, []);
 
   return (
-    <div className="h-screen w-full bg-slate-600 flex justify-center items-center text-white text-2xl">
-      <div className=" max-w-2xl  bg-slate-900 p-6 rounded-2xl">
-        <h1>Results:</h1>
+    <div className=" w-full bg-slate-600 flex justify-center items-center text-white text-2xl p-5">
+      <div className=" max-w-3xl  bg-slate-900 p-6 rounded-2xl">
+        <h1
+          className="text-center text-2xl font-bold
+         m-3"
+        >
+          Results:
+        </h1>
 
         {data.map((val, ind) => (
-          <div key={ind} className=" grid grid-cols-3 gap-2">
-            <h1 className="p-4 bg-slate-700 rounded-2xl">
-              <span className="font-bold text-cyan-400">Technology :</span>{" "}
-              {val.technology}
-            </h1>
-            <h1 className="p-4 bg-slate-700 rounded-2xl">
-              <span className="text-purple-500 font-bold">Score :</span>{" "}
-              {val.score}
-            </h1>
-            <h1 className="p-4 bg-slate-700 rounded-2xl">
-              <span className="text-orange-500 font-bold">Perfomance :</span>{" "}
-              {val.performance}
-            </h1>
-            <h1 className="p-4 bg-slate-700 rounded-2xl">
-              <span className="font-bold text-yellow-500">
-                TotalQuestions :
-              </span>{" "}
-              {val.totalQuestions}
-            </h1>
-            <h1 className="p-4 bg-slate-700 rounded-2xl">
-              <span className="font-bold text-green-500">Correct :</span>{" "}
-              {val.correct}
-            </h1>
-            <h1 className="p-4 bg-slate-700 rounded-2xl">
-              <span className="font-bold text-red-500">Wrong :</span>{" "}
-              {val.wrong}
-            </h1>
+          <div>
+            <h1 className="text-orange-600">Test {ind + 1}</h1>
+            <div key={ind} className=" grid grid-cols-3 gap-2 py-5">
+              <h1 className="p-4 bg-slate-700 rounded-2xl">
+                <span className="font-bold text-cyan-400">Technology :</span>{" "}
+                {val.technology}
+              </h1>
+              <h1 className="p-4 bg-slate-700 rounded-2xl">
+                <span className="text-purple-500 font-bold">Score :</span>{" "}
+                {val.score}%
+              </h1>
+              <h1 className="p-4 bg-slate-700 rounded-2xl">
+                <span className="text-orange-500 font-bold">Perfomance :</span>{" "}
+                {val.performance}
+              </h1>
+              <h1 className="p-4 bg-slate-700 rounded-2xl">
+                <span className="font-bold text-yellow-500">
+                  TotalQuestions :
+                </span>{" "}
+                {val.totalQuestions}
+              </h1>
+              <h1 className="p-4 bg-slate-700 rounded-2xl">
+                <span className="font-bold text-green-500">Correct :</span>{" "}
+                {val.correct}
+              </h1>
+              <h1 className="p-4 bg-slate-700 rounded-2xl">
+                <span className="font-bold text-red-500">Wrong :</span>{" "}
+                {val.wrong}
+              </h1>
+            </div>
           </div>
         ))}
       </div>

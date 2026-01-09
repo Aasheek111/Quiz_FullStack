@@ -11,7 +11,7 @@ function Home() {
     setSelected(true);
   }
 
-  const tec = ["HTML", "JS", "CSS", "REACT", "NEXT"];
+  const tec = ["HTML", "JS", "CSS", "REACT", "NEXT","NODE"];
   const levels = ["Beginner", "Intermediate", "Pro"];
 
   return (
