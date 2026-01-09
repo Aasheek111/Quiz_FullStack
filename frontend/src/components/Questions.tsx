@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { quizQuestions } from "../Questions";
 import Result from "./Result";
 import api from "../lib/axios";
+import { Link } from "react-router-dom";
 
 function Questions({ data }) {
   const { level, tech } = data;
@@ -104,7 +105,21 @@ if (!token) {
             </h1>
           </div>
         
+        <div className="flex justify-center">
+<Link
+  to="/"
+  onClick={() => {
+    setCorrect(0);
+    setPresent(0);
+    setShowres(false);
+  }}
+  className="p-3 bg-orange-400 rounded-2xl cursor-pointer hover:bg-orange-300"
+>
+  Retry
+</Link>
+        </div>
       </div>
+
     </div>
 </div>
 </>
@@ -126,6 +141,7 @@ if (!token) {
                 ))}
               </div>
             </div>
+            
           </div>
           )
         </div>
