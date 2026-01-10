@@ -1,23 +1,50 @@
 import { FaGoogle } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import { useState } from "react";
 
+import { useGoogleLogin } from "@react-oauth/google";
+import api from "../lib/axios";
 function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPass] = useState<string>("");
+  const [isLogin, setisLogin] = useState<boolean | null>(null);
+  const navigate = useNavigate();
+
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const res = await api.post("http://localhost:3001/api/auth/google", {
+          access_token: tokenResponse.access_token,
+        });
+
+        const token = res.data.token;
+        console.log(tokenResponse.access_token)
+        localStorage.setItem("token", token);
+        navigate("/")
+      } catch (err) {
+        console.log("Google login failed", err);
+      }
+    },
+  });
 
   const handelLogin = async () => {
     const res = await loginUser({ email, password });
-
-       const token = res.data.token;
-
-    console.log("Token received:", token);
-
+    const token = res.data.token;
+    navigate('/')
     // Save token for later use
     localStorage.setItem("token", token);
+    localStorage.setItem("user",res.data);
+    console.log(res.data)
     console.log(res);
+    if (res.data.success == true) {
+      setisLogin(true);
+    }
+
+
+
+
   };
   return (
     <div className="p-3 w-full flex justify-center items-center text-white bg-slate-600 h-screen ">
@@ -56,14 +83,16 @@ function Login() {
 
           <div className=" text-lg flex items-center flex-col">
             <div className="p-3 ">
-              <hr className="items-center grow flex-1 " />
+              <hr className="items-center grow flex-1  " />
               or signin with
               <hr />
             </div>
 
             <div className=" flex gap-5 text-3xl m-1">
-              <FaGoogle />
-              <FaFacebook />
+              <FaGoogle
+                className="cursor-pointer w-10 "
+                onClick={() => login()}
+              />
             </div>
           </div>
 

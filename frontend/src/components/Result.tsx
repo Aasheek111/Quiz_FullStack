@@ -47,8 +47,8 @@ function Result() {
   }, []);
 
   return (
-    <div className=" w-full bg-slate-600 flex justify-center items-center text-white text-2xl p-5">
-      <div className=" max-w-3xl  bg-slate-900 p-6 rounded-2xl">
+    <div className=" w-full min-h-screen bg-slate-600 flex justify-center items-center text-white text-2xl p-5">
+      <div className=" min-w-3xl  bg-slate-900 p-6 rounded-2xl">
         <h1
           className="text-center text-2xl font-bold
          m-3"
@@ -57,9 +57,10 @@ function Result() {
         </h1>
 
         {data.map((val, ind) => (
-          <div>
+          <div className="py-5">
             <h1 className="text-orange-600">Test {ind + 1}</h1>
             <div key={ind} className=" grid grid-cols-3 gap-2 py-5">
+
               <h1 className="p-4 bg-slate-700 rounded-2xl">
                 <span className="font-bold text-cyan-400">Technology :</span>{" "}
                 {val.technology}

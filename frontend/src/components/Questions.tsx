@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function Questions({ data }) {
   const { level, tech } = data;
+  const [selected,setSelected]=useState<number|null>(null)
   const [correct, setCorrect] = useState<number>(0);
   const [present, setPresent] = useState<number>(0);
   const [showres, setShowres] = useState(false);
@@ -60,15 +61,20 @@ function Questions({ data }) {
   }, [showres]);
 
   const handelClick = (ind: number) => {
+
+    setSelected(ind)
     if (current.options[ind] == current.correctAnswer) {
       setCorrect(correct + 1);
     }
 
-    if (present + 1 == filterQuestions.length) {
-      setShowres(true);
-    } else {
-      setPresent(present + 1);
-    }
+    setTimeout(() => {
+      setSelected(null);
+      if (present + 1 == filterQuestions.length) {
+        setShowres(true);
+      } else {
+        setPresent(present + 1);
+      }
+    }, 300);
   };
   return (
     <>
@@ -77,9 +83,9 @@ function Questions({ data }) {
           <div>
             <div className="h-screen w-full bg-slate-600 flex justify-center items-center text-white text-2xl">
               <div className=" max-w-2xl  bg-slate-900 p-6 rounded-2xl">
-                <h1>Results:</h1>
+                <h1 className="text-center p-5">Results:</h1>
 
-                <div className=" grid grid-cols-3 gap-2">
+                <div className=" grid grid-cols-1 gap-4">
                   <h1 className="p-4 bg-slate-700 rounded-2xl">
                     <span className="font-bold text-cyan-400">
                       Technology :
@@ -111,7 +117,7 @@ function Questions({ data }) {
                       setPresent(0);
                       setShowres(false);
                     }}
-                    className="p-3 bg-orange-400 rounded-2xl cursor-pointer hover:bg-orange-300"
+                    className="p-3 bg-orange-400 rounded-2xl cursor-pointer hover:bg-orange-300 m-3 w-35 text-center"
                   >
                     Retry
                   </Link>
@@ -129,7 +135,13 @@ function Questions({ data }) {
               <div className="grid-cols-2 grid gap-4 text-2xl text-white m-8">
                 {current.options.map((val, ind) => (
                   <button
-                    className="bg-neutral-800 p-4 rounded-2xl cursor-pointer hover:bg-neutral-600"
+                    className={` p-4 rounded-2xl cursor-pointer ${
+                      selected==ind?
+                      current.options[ind] == current.correctAnswer?
+                     "bg-green-500"
+                      :"bg-red-500"
+                      :"bg-neutral-800 hover:bg-neutral-600"
+                    }`}
                     key={ind}
                     onClick={() => handelClick(ind)}
                   >

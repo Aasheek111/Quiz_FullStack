@@ -17,6 +17,16 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     unique:true
   },
+  authProvider: {
+  type: String,
+  enum: ["local", "google"],
+  default: "local",
+  
+},
+avatar:{
+  type:String
+}
+
 });
 const User=  mongoose.model("User", UserSchema);
 export default User;
