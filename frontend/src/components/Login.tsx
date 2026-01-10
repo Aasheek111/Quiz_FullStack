@@ -18,11 +18,10 @@ function Login() {
         const res = await api.post("http://localhost:3001/api/auth/google", {
           access_token: tokenResponse.access_token,
         });
-
-        const token = res.data.token;
-        console.log(tokenResponse.access_token)
-        localStorage.setItem("token", token);
-        navigate("/")
+        // console.log(tokenResponse.access_token)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/");
       } catch (err) {
         console.log("Google login failed", err);
       }
@@ -32,19 +31,16 @@ function Login() {
   const handelLogin = async () => {
     const res = await loginUser({ email, password });
     const token = res.data.token;
-    navigate('/')
+    navigate("/");
     // Save token for later use
     localStorage.setItem("token", token);
-    localStorage.setItem("user",res.data);
-    console.log(res.data)
-    console.log(res);
+    localStorage.setItem("user", res.data);
+
+    // console.log(res.data.user.email)
+    // console.log(res);
     if (res.data.success == true) {
       setisLogin(true);
     }
-
-
-
-
   };
   return (
     <div className="p-3 w-full flex justify-center items-center text-white bg-slate-600 h-screen ">

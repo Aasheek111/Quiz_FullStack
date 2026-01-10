@@ -26,6 +26,7 @@ export const googleLogin = async (req, res) => {
     //   "email_verified": true
     // }
 
+    console.log(access_token);
     const { email, name, picture } = googleRes.data;
 
     let user = await User.findOne({ email });
@@ -46,7 +47,7 @@ export const googleLogin = async (req, res) => {
     res.status(200).json({
       success: true,
       token,
-      user
+      user,
     });
   } catch (err) {
     res.status(401).json({ message: "Google authentication failed" });

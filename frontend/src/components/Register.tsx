@@ -1,13 +1,28 @@
 import { useState } from "react";
-import { FaGoogle, FaFacebook } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaGoogle} from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
+import { useGoogleLogin } from "@react-oauth/google";
+import api from "../lib/axios";
 
 function Register() {
   const [email, setEmail] = useState<string>("");
   const [password, setPass] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const navigate= useNavigate()
 
+  const googleRegister = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const res = await api.post("/api/auth/google", {
+        access_token: tokenResponse.access_token,
+      });
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      navigate("/");
+    },
+  });
   const handelSubmit = async () => {
     const res = await registerUser({ email, password, name });
     console.log(res);
@@ -63,8 +78,7 @@ function Register() {
             </div>
 
             <div className="flex gap-5 text-3xl m-1">
-              <FaGoogle />
-              <FaFacebook />
+              <FaGoogle onClick={()=>{googleRegister()}}/>
             </div>
           </div>
 

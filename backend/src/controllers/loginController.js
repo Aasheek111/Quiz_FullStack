@@ -11,8 +11,6 @@ export async function login(req, res) {
         message: "Field cannot be empty",
         sucess: false,
       });
-
-      
     }
 
     const user = await User.findOne({ email });

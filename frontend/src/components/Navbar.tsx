@@ -3,15 +3,12 @@ import Home from "./Home";
 import Result from "./Result";
 import Login from "./Login";
 import Register from "./Register";
-import api from "../lib/axios";
-import { GoogleLogin } from "@react-oauth/google";
-
-
 
 const Navbar: React.FC = () => {
+  const user = localStorage.getItem("user");
+  const userdata = JSON.parse(user);
+
   const navigate = useNavigate();
-
-
   return (
     <>
       <nav className="flex items-center justify-between px-8 py-4 bg-slate-800 text-white">
@@ -29,7 +26,7 @@ const Navbar: React.FC = () => {
             Login
           </Link>
           <div className="flex flex-col justify-center items-center">
-            <img src="logo.png" className="w-10 rounded-2xl" alt="" />
+            <img src={userdata.avatar} className="w-10 rounded-2xl" alt="" />
           </div>
         </div>
       </nav>
