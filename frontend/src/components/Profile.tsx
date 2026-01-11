@@ -28,11 +28,11 @@ function Profile() {
   }
 
   return (
-    <div className="flex justify-center items-center ">
-      <div>
-        <h1>Profile</h1>
+    <div className="flex justify-center items-center  bg-slate-700 h-[92vh] text-white">
+      <div className="bg-slate-900 p-8 rounded-2xl">
+        <h1 className="text-2xl text-center font-bold">Profile</h1>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center p-8 ">
           <img
             src={
               profile.avatar ||
@@ -42,12 +42,16 @@ function Profile() {
             className="rounded-full"
           />
         </div>
-        <div>Name:{profile.name}</div>
+        <div className="text-xl"><span className="font-bold m-3">Name: {" "}
+            </span>{profile.name}</div>
 
-        <div>Email:{profile.email}</div>
+        <div><span className="font-bold m-3 text-xl">Email: {" "}
+            </span>{profile.email}</div>
 
-        <div className="cursor-pointer" onClick={logout}>
+        <div className="cursor-pointer text-center" >
+            <button onClick={logout} className="bg-red-600 p-3 m-3 rounded-2xl cursor-pointer">
           LOGOUT
+            </button>
         </div>
       </div>
     </div>
