@@ -3,12 +3,17 @@ import Home from "./Home";
 import Result from "./Result";
 import Login from "./Login";
 import Register from "./Register";
+import { useState } from "react";
+import Profile from "./Profile";
 
 const Navbar: React.FC = () => {
   const user = localStorage.getItem("user");
   const userdata = JSON.parse(user);
 
   const navigate = useNavigate();
+  const showProfile = () => {
+    navigate("/profile");
+  };
   return (
     <>
       <nav className="flex items-center justify-between px-8 py-4 bg-slate-800 text-white">
@@ -26,7 +31,16 @@ const Navbar: React.FC = () => {
             Login
           </Link>
           <div className="flex flex-col justify-center items-center">
-            <img src={userdata.avatar} className="w-10 rounded-2xl" alt="" />
+            <img
+              src={
+                userdata.avatar
+                  ? userdata.avatar
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR99-ZMZeEtYlFVdT-HN3Hz0f_i64Zf76D67g&s"
+              }
+              className="w-10 rounded-2xl cursor-pointer"
+              onClick={showProfile}
+              alt=""
+            />
           </div>
         </div>
       </nav>
@@ -36,6 +50,7 @@ const Navbar: React.FC = () => {
         <Route path="/results" element={<Result />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
       </Routes>
     </>
   );
