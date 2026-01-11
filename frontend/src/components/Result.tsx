@@ -47,7 +47,7 @@ function Result() {
   }, []);
 
   return (
-    <div className=" w-full min-h-screen bg-slate-600 flex justify-center items-center text-white text-2xl p-5">
+    <div className=" w-full min-h-screen bg-slate-700 flex justify-center items-center text-white text-2xl p-5">
       <div className=" min-w-3xl  bg-slate-900 p-6 rounded-2xl">
         <h1
           className="text-center text-2xl font-bold

@@ -8,7 +8,7 @@ import Profile from "./Profile";
 
 const Navbar: React.FC = () => {
   const user = localStorage.getItem("user");
-  const userdata = JSON.parse(user);
+  const userdata = user ? JSON.parse(user) : null;
 
   const navigate = useNavigate();
   const showProfile = () => {
@@ -27,15 +27,14 @@ const Navbar: React.FC = () => {
         <div className="flex gap-5 text-2xl">
           <Link to="/">Home</Link>
           <Link to="/results">Results</Link>
-          <Link to="/login" className="flex flex-col">
+          {/* <Link to="/login" className="flex flex-col">
             Login
-          </Link>
+          </Link> */}
           <div className="flex flex-col justify-center items-center">
             <img
               src={
-                userdata.avatar
-                  ? userdata.avatar
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR99-ZMZeEtYlFVdT-HN3Hz0f_i64Zf76D67g&s"
+                userdata?.avatar||
+                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR99-ZMZeEtYlFVdT-HN3Hz0f_i64Zf76D67g&s"
               }
               className="w-10 rounded-2xl cursor-pointer"
               onClick={showProfile}

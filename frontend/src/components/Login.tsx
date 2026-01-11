@@ -32,7 +32,7 @@ function Login() {
     const res = await loginUser({ email, password });
     const token = res.data.token;
     navigate("/");
-    // Save token for later use
+
     localStorage.setItem("token", token);
     localStorage.setItem("user", res.data);
 
@@ -43,7 +43,7 @@ function Login() {
     }
   };
   return (
-    <div className="p-3 w-full flex justify-center items-center text-white bg-slate-600 h-screen ">
+    <div className="p-3 w-full flex justify-center items-center text-white bg-slate-700 h-[91vh] ">
       <div className=" bg-slate-900 flex items-center rounded-2xl flex-col p-10 shadow-md ">
         <h1 className="text-3xl  h-10 mb-10">Login</h1>
         <div className="flex flex-col gap-5 text-2xl ">

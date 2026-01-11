@@ -29,7 +29,7 @@ function Register() {
   };
 
   return (
-    <div className="p-5 w-full h-screen bg-slate-600 flex justify-center items-center text-white">
+    <div className="p-5 w-full h-[92vh] bg-slate-700 flex justify-center items-center text-white">
       <div className="bg-slate-900 flex items-center rounded-2xl flex-col p-6 px-20 shadow-md">
         <h1 className="text-3xl h-10 mb-10">Register</h1>
 
