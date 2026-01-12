@@ -27,9 +27,9 @@ const Navbar: React.FC = () => {
         <div className="flex gap-5 text-2xl">
           <Link to="/">Home</Link>
           <Link to="/results">Results</Link>
-          {/* <Link to="/login" className="flex flex-col">
+          <Link to="/login" className="flex flex-col">
             Login
-          </Link> */}
+          </Link>
           <div className="flex flex-col justify-center items-center">
             <img
               src={
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
               }
               className="w-10 rounded-2xl cursor-pointer"
               onClick={showProfile}
-              alt=""
+              alt="pp"
             />
           </div>
         </div>

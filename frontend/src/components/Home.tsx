@@ -17,7 +17,7 @@ function Home() {
   return (
 
      selected?<div>
-      <Questions data={{level:level,tech}}/>
+      <Questions data={{level,tech}}/>
       </div>
       :
 
