@@ -10,6 +10,7 @@ function Profile() {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("avatar");
     navigate("/login");
   };
   if (!profile) {

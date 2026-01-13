@@ -9,6 +9,8 @@ import Profile from "./Profile";
 const Navbar: React.FC = () => {
   const user = localStorage.getItem("user");
   const userdata = user ? JSON.parse(user) : null;
+localStorage.setItem("avatar",userdata.avatar);
+const avatar=localStorage.getItem("avatar");
 
   const navigate = useNavigate();
   const showProfile = () => {
@@ -33,7 +35,7 @@ const Navbar: React.FC = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               src={
-                userdata?.avatar||
+                avatar||
                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR99-ZMZeEtYlFVdT-HN3Hz0f_i64Zf76D67g&s"
               }
               className="w-10 rounded-2xl cursor-pointer"
