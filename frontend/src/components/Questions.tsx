@@ -2,23 +2,35 @@ import React, { useEffect, useState } from "react";
 import { quizQuestions } from "../Questions";
 import Result from "./Result";
 import api from "../lib/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Questions({ data }) {
   const { level, tech } = data;
-  const [selected,setSelected]=useState<number|null>(null)
+  const [selected, setSelected] = useState<number | null>(null);
   const [correct, setCorrect] = useState<number>(0);
   const [present, setPresent] = useState<number>(0);
   const [showres, setShowres] = useState(false);
 
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
   if (!token) {
-    console.log("No token found in localStorage");
-    return;
+    return (
+      <>
+        <div className="flex justify-center items-center h-[92vh] flex-col gap-6 bg-slate-700 text-white text-2xl ">
+          <h1>Please Login to Start the quiz</h1>
+          <button
+            className="p-3 rounded-2xl w-xs cursor-pointer text-white text-2xl bg-blue-700"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </button>
+        </div>
+      </>
+    );
   }
 
   const filterQuestions = quizQuestions.filter(
-    (q) => q.technology == tech.toLowerCase() && q.level == level
+    (q) => q.technology.toLowerCase() == tech.toLowerCase() && q.level == level
   );
   const current = filterQuestions[present];
   const totalQuestions = filterQuestions.length;
@@ -61,10 +73,9 @@ function Questions({ data }) {
   }, [showres]);
 
   const handelClick = (ind: number) => {
-
-    setSelected(ind)
+    setSelected(ind);
     if (current.options[ind] == current.correctAnswer) {
-      setCorrect(correct + 1);
+      setCorrect((prev)=>prev+1);
     }
 
     setTimeout(() => {
@@ -82,7 +93,7 @@ function Questions({ data }) {
         <>
           <div>
             <div className="h-screen w-full bg-slate-600 flex justify-center items-center text-white text-2xl">
-              <div className=" max-w-2xl  bg-slate-900 p-6 rounded-2xl">
+              <div className=" max-w-2xl  bg-slate-900 px-20 p-5 rounded-2xl">
                 <h1 className="text-center p-5">Results:</h1>
 
                 <div className=" grid grid-cols-1 gap-4">
@@ -115,6 +126,7 @@ function Questions({ data }) {
                     onClick={() => {
                       setCorrect(0);
                       setPresent(0);
+                      
                       setShowres(false);
                     }}
                     className="p-3 bg-orange-400 rounded-2xl cursor-pointer hover:bg-orange-300 m-3 w-35 text-center"
@@ -136,11 +148,11 @@ function Questions({ data }) {
                 {current.options.map((val, ind) => (
                   <button
                     className={` p-4 rounded-2xl cursor-pointer ${
-                      selected==ind?
-                      current.options[ind] == current.correctAnswer?
-                     "bg-green-500"
-                      :"bg-red-500"
-                      :"bg-neutral-800 hover:bg-neutral-600"
+                      selected == ind
+                        ? current.options[ind] == current.correctAnswer
+                          ? "bg-green-500"
+                          : "bg-red-500"
+                        : "bg-neutral-800 hover:bg-neutral-600"
                     }`}
                     key={ind}
                     onClick={() => handelClick(ind)}

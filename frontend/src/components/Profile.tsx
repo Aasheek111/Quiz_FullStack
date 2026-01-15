@@ -19,7 +19,7 @@ function Profile() {
         <h1 className="text-center">Please login to view your profile.</h1>
 
         <button
-          className="p-4 bg-blue-600 rounded-2xl w-34 cursor-pointer "
+          className="p-4 bg-blue-700 rounded-2xl w-xs cursor-pointer "
           onClick={() => navigate("/login")}
         >
           {" "}
