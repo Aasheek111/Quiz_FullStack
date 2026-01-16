@@ -42,7 +42,7 @@ function Questions({ data }) {
     }
     try {
       const response = await api.post(
-        "http://localhost:3001/results/create",
+        "https://epic-quiz.onrender.com//results/create",
         {
           level: level,
           technology: tech,

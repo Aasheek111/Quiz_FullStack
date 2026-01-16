@@ -30,7 +30,7 @@ function Result() {
     const fetchData = async () => {
       try {
         const res = await axios.get<Api_res>(
-          "http://localhost:3001/results/displayall",
+          "https://epic-quiz.onrender.com//results/displayall",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ function Result() {
         </h1>
 
         {data.map((val, ind) => (
-          <div className="py-5">
+          <div className="py-5" key={ind}>
             <h1 className="text-orange-600">Test {ind + 1}</h1>
             <div key={ind} className=" grid grid-cols-3 gap-2 py-5">
 
