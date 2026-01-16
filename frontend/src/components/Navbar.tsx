@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
   const user = localStorage.getItem("user");
   const userdata = user ? JSON.parse(user) : null;
 
-  const avatar = userdata?.avatar || DEFAULT_AVATAR;
+  const avatar = localStorage.getItem("avatar") || DEFAULT_AVATAR;
 
   return (
     <>

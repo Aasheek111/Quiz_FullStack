@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { quizQuestions } from "../Questions";
-import Result from "./Result";
 import api from "../lib/axios";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Questions({ data }) {
   const { level, tech } = data;
@@ -42,7 +42,7 @@ function Questions({ data }) {
     }
     try {
       const response = await api.post(
-        "https://epic-quiz.onrender.com//results/create",
+        "http://localhost:3001/results/create",
         {
           level: level,
           technology: tech,
@@ -75,7 +75,7 @@ function Questions({ data }) {
   const handelClick = (ind: number) => {
     setSelected(ind);
     if (current.options[ind] == current.correctAnswer) {
-      setCorrect((prev)=>prev+1);
+      setCorrect((prev) => prev + 1);
     }
 
     setTimeout(() => {
@@ -126,7 +126,7 @@ function Questions({ data }) {
                     onClick={() => {
                       setCorrect(0);
                       setPresent(0);
-                      
+
                       setShowres(false);
                     }}
                     className="p-3 bg-orange-400 rounded-2xl cursor-pointer hover:bg-orange-300 m-3 w-35 text-center"
@@ -146,7 +146,7 @@ function Questions({ data }) {
 
               <div className="grid-cols-2 grid gap-4 text-2xl text-white m-8">
                 {current.options.map((val, ind) => (
-                  <button
+                  <motion.button
                     className={` p-4 rounded-2xl cursor-pointer ${
                       selected == ind
                         ? current.options[ind] == current.correctAnswer
@@ -158,7 +158,7 @@ function Questions({ data }) {
                     onClick={() => handelClick(ind)}
                   >
                     {val}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>

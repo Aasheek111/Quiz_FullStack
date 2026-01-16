@@ -5,7 +5,8 @@ function Profile() {
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
   const profile = user ? JSON.parse(user) : null;
-
+  localStorage.setItem("avatar",profile.avatar);
+  const avatar=localStorage.getItem("avatar");
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -37,7 +38,7 @@ function Profile() {
         <div className="flex justify-center p-8 ">
           <img
             src={
-              profile?.avatar ||
+              avatar ||
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR99-ZMZeEtYlFVdT-HN3Hz0f_i64Zf76D67g&s"
             }
             alt="pp"

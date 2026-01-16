@@ -30,7 +30,7 @@ function Result() {
     const fetchData = async () => {
       try {
         const res = await axios.get<Api_res>(
-          "https://epic-quiz.onrender.com//results/displayall",
+          "http://localhost:3001/results/displayall",
           {
             headers: {
               Authorization: `Bearer ${token}`,
