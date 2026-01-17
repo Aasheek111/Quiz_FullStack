@@ -126,7 +126,6 @@ function Questions({ data }) {
                     onClick={() => {
                       setCorrect(0);
                       setPresent(0);
-
                       setShowres(false);
                     }}
                     className="p-3 bg-orange-400 rounded-2xl cursor-pointer hover:bg-orange-300 m-3 w-35 text-center"
@@ -141,7 +140,7 @@ function Questions({ data }) {
       ) : (
         <div className="w-full h-[90vh] flex justify-center  flex-col">
           <div className="p-20 ">
-            <div>
+            {current?<div>
               <h1 className="text-center text-3xl">{current.question}</h1>
 
               <div className="grid-cols-2 grid gap-4 text-2xl text-white m-8">
@@ -161,7 +160,8 @@ function Questions({ data }) {
                   </motion.button>
                 ))}
               </div>
-            </div>
+            </div>:<div>NO Questions for the given input</div>}
+            
           </div>
           )
         </div>

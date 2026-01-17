@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Questions from "./Questions";
+import { div } from "motion/react-client";
 
 function Home() {
   const [level, setLevel] = useState<string>("");
@@ -21,7 +22,7 @@ function Home() {
       </div>
       :
 
-    <div className="min-h-screen w-full bg-slate-700 flex justify-center items-center text-white">
+    <div className="min-h-[92vh] w-full bg-slate-700 flex justify-center items-center text-white">
       <div className="min-w-2xl  bg-slate-900  p-10 rounded-2xl text-2xl">
         <h1 className="text-center bold text-3xl p-4">QUIZ</h1>
 
@@ -29,6 +30,7 @@ function Home() {
           <h1 className="w-full p-3">Technology</h1>
           <div className="grid grid-cols-2 gap-3 ">
             {tec.map((val, i) => (
+
               <button
                 className={` cursor-pointer rounded-lg p-3 ${tech==val?" bg-green-600":"bg-slate-500  hover:bg-slate-400 "} hover:scale-105 transition-all `}
                 key={i}
