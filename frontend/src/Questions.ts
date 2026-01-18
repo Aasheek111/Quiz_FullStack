@@ -34,7 +34,7 @@ export const quizQuestions = [
     technology: "html",
     level: "Beginner",
     question: "Which tag is used for the largest heading?",
-    options: ["<h6>", "<head>", "<h1>", "<heading>"],
+    options: ["<h6>", "<head>", "<h1>", "<bold>"],
     correctAnswer: "<h1>",
   },
   {
