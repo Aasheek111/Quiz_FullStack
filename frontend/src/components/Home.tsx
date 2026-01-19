@@ -13,7 +13,7 @@ function Home() {
   }
 
   const tec = ["HTML", "JS", "CSS", "REACT", "NEXT","NODE"];
-  const levels = ["Begineer", "Intermediate", "Pro"];
+  const levels = ["Beginner", "Intermediate", "Pro"];
 
   return (
 
