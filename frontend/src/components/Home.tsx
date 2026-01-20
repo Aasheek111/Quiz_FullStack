@@ -2,11 +2,36 @@ import axios from "axios";
 import React, { useState } from "react";
 import Questions from "./Questions";
 import { div } from "motion/react-client";
-
+import {motion} from 'framer-motion'
 function Home() {
   const [level, setLevel] = useState<string>("");
   const [tech, setTech] = useState<string>("");
   const [selected,setSelected]=useState(false);
+
+  const parentVarient={
+    show:{
+      opacity:1,
+      transition:{
+        staggerChildren:0.1,
+        delayChildren:0.3
+      }
+    },
+
+    hide:{
+      opacity:0
+    }
+  }
+  const childVarient={
+    show:{
+      opacity:1,
+      x:9
+
+    },
+    hide:{
+      opacity:0,
+      x:-10
+    }
+  }
 
   const submitVal=()=>{
     setSelected(true);
@@ -25,21 +50,23 @@ function Home() {
     <div className="min-h-[92vh] w-full bg-slate-700 flex justify-center items-center text-white">
       <div className="min-w-2xl  bg-slate-900  p-10 rounded-2xl text-2xl">
         <h1 className="text-center bold text-3xl p-4">QUIZ</h1>
-
         <div className="">
           <h1 className="w-full p-3">Technology</h1>
-          <div className="grid grid-cols-2 gap-3 ">
+          <motion.div className="grid grid-cols-2 gap-3 " variants={parentVarient}>
             {tec.map((val, i) => (
 
-              <button
+              <motion.button
+              variants={childVarient}
+              initial="hide"
+              animate="show"
                 className={` cursor-pointer rounded-lg p-3 ${tech==val?" bg-green-600":"bg-slate-500  hover:bg-slate-400 "} hover:scale-105 transition-all `}
                 key={i}
                 onClick={() => setTech(val)}
               >
                 {val}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div>

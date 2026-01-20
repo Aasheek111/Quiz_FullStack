@@ -146,6 +146,7 @@ function Questions({ data }) {
               <div className="grid-cols-2 grid gap-4 text-2xl text-white m-8">
                 {current.options.map((val, ind) => (
                   <motion.button
+              
                     className={` p-4 rounded-2xl cursor-pointer ${
                       selected == ind
                         ? current.options[ind] == current.correctAnswer
